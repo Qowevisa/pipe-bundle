@@ -33,3 +33,7 @@ Default parameter is o. It accepts only "e" or "o" as first argument after the n
 numerates every line in stdin with pattern "n:\<LINE\>". Numerating start from 0.
 ### pex
 Piped EXclued or "anti-grep". It excludes every line from stdin if it has at least one of the arguments in line.
+### inverse
+Inverses every line in stream
+### prm
+removes every file from string in current directory by calling "rm" program
