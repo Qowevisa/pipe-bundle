@@ -37,3 +37,5 @@ Piped EXclued or "anti-grep". It excludes every line from stdin if it has at lea
 Inverses every line in stream
 ### prm
 removes every file from string in current directory by calling "rm" program
+### pjoin
+concats every line from file or stdin into one long line. Cap is 100Kb for line.
