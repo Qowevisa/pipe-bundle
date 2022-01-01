@@ -20,14 +20,14 @@ make compile-and-send
 ### add
 pushes every arg from i=1 to the end of the stream
 ### concat \[S\] \[E\]
-add string S to the start of each line and E to the end of each line
+add string S to the start of each line and E to the end of each line  
 if you need to push only to the end call it with S = "". E.g.
 ```
 cat file | concat "" ::endl;
 ```
 will bring string "::endl;" to the end of each line into the stream.
 ### lines \[e/o\]
-it will print every odd line (0, 2, 4, ...) or every even line (1, 3, 5, ...) from stdin
+it will print every odd line (0, 2, 4, ...) or every even line (1, 3, 5, ...) from stdin  
 Default parameter is o. It accepts only "e" or "o" as first argument after the name, anything else is ignored
 ### numerate
 numerates every line in stdin with pattern "n:\<LINE\>". Numerating start from 0.
@@ -42,13 +42,30 @@ concats every line from file or stdin into one long line. Cap is 100Kb for line.
 ### calculate
 performs atoi() for every line and prints the sum of every function's return
 ### statfiles \[-\[s/a/h\]\]
-get size of files that are in stdin and in args (without the '-' prefix) and prints the info in stdout.
-Options:
-    -s : Silent.    Program will not print the names of files before the size itself
-    -a : All only.  Programm will print only the sum of all the sizes.
-    -h : Human.     Transforms every size into human readable form. F.e. 9012 will become 8.80Kb and etc.
-Note:
-    program will not try to find files. Don't hope that command "ls ./folder | statfiles" will work.
-        Either do "cd ./folder ; ls | statfile", or use "concat" program and you can do such a thing:
-         "ls ./folder | concat ./folder | statfiles". I recommend you to put "ls $1 | concat $1" in a function
-         that you can name like "lsc" so you will type only "lsc ./folder | statfiles"
+get size of files that are in stdin and in args (without the '-' prefix) and prints the info in stdout.  
+**Options**:  
+ - -s : Silent.    Program will not print the names of files before the size itself  
+ - -a : All only.  Programm will print only the sum of all the sizes.  
+ - -h : Human.     Transforms every size into human readable form. F.e. 9012 will become 8.80Kb and etc.  
+
+**Note:**  
+program will not try to find files. Don't hope that  
+```
+ls ./folder | statfiles
+```
+will work. Either do  
+```
+cd ./folder && ls | statfile
+```
+or use "concat" program and you can do such a thing:  
+```
+ls ./folder | concat ./folder | statfiles
+```
+I recommend you to put  
+```
+ls $1 | concat $1
+```
+in a function like "lsc" so you will type only  
+```
+lsc ./folder | statfiles
+```
