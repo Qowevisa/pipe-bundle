@@ -69,3 +69,14 @@ in a function like "lsc" so you will type only
 ```
 lsc ./folder | statfiles
 ```
+### align \<C\>
+aligns every string on the max occurance of the \<C\> char. You can enter string, it will just use only first char.  
+This means that
+```
+cat file | align :
+```
+and
+```
+cat file | align :test
+```
+are the same.
