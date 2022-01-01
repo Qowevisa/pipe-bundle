@@ -41,3 +41,14 @@ removes every file from string in current directory by calling "rm" program
 concats every line from file or stdin into one long line. Cap is 100Kb for line.
 ### calculate
 performs atoi() for every line and prints the sum of every function's return
+### statfiles \[-\[s/a/h\]\]
+get size of files that are in stdin and in args (without the '-' prefix) and prints the info in stdout.
+Options:
+    -s : Silent.    Program will not print the names of files before the size itself
+    -a : All only.  Programm will print only the sum of all the sizes.
+    -h : Human.     Transforms every size into human readable form. F.e. 9012 will become 8.80Kb and etc.
+Note:
+    program will not try to find files. Don't hope that command "ls ./folder | statfiles" will work.
+        Either do "cd ./folder ; ls | statfile", or use "concat" program and you can do such a thing:
+         "ls ./folder | concat ./folder | statfiles". I recommend you to put "ls $1 | concat $1" in a function
+         that you can name like "lsc" so you will type only "lsc ./folder | statfiles"
