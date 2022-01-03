@@ -80,3 +80,5 @@ and
 cat file | align :test
 ```
 are the same.
+### mkstream
+prints every argv as a line. Don't pass any stdin so the only use is to MaKe STREAM of lines
