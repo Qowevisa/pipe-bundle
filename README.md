@@ -39,6 +39,9 @@ Inverses every line in stream
 removes every file from string in current directory by calling "rm" program
 ### pjoin
 concats every line from file or stdin into one long line. Cap is 100Kb for line.
+**Options**:
+ - -f : File.      Program will read from next argv as a regular file instead of stdin.
+ - -c : Connector. First char of next argv will be used as a connection char instead of ' ' as a default.
 ### calculate
 performs atoi() for every line and prints the sum of every function's return
 ### statfiles \[-\[s/a/h\]\]

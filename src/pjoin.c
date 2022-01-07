@@ -9,18 +9,39 @@
 
 #define RET_SIZE 102400
 
-int main(int argc, char *argv[]) {
-    int fi = 0;
-    for (int i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "-f") == 0 && i + 1 < argc) {
-            fi = i + 1;
-        }
-    }
-    //
+static inline void pjoin(FILE *file, char connector) {
     char *ret = (char*)malloc(RET_SIZE);
     memset(ret, 0, RET_SIZE);
     size_t pos = 0;
-    size_t i;
+    //
+    char *buff = (char*)malloc(2048);
+    size_t n;
+    while (getline(&buff, &n, file) != -1) {
+        size_t i = 0;
+        while (buff[i] != '\n') {
+            ret[pos++] = buff[i++];
+        }
+        if (connector) {
+            ret[pos++] = connector;
+        } else {
+            ret[pos++] = ' ';
+        }
+    }
+    //
+    ret[pos - 1] = '\0';
+    printf("%s\n", ret);
+}
+
+int main(int argc, char *argv[]) {
+    int fi = 0;
+    char connector = 0;
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-f") == 0 && i + 1 < argc) {
+            fi = i + 1;
+        } else if (strcmp(argv[i], "-c") == 0 && i + 1 < argc) {
+            connector = argv[i + 1][0];
+        }
+    }
     //
     if (fi != 0) {
         // reading from file
@@ -40,34 +61,11 @@ int main(int argc, char *argv[]) {
             return 1;
         }
         //
-        char *buff = (char*)malloc(2048);
-        size_t n;
-        while (getline(&buff, &n, file) != -1) {
-            i = 0;
-            while (buff[i] != '\n') {
-                ret[pos++] = buff[i++];
-            }
-            ret[pos++] = ' ';
-        }
-        //
-        ret[pos - 1] = '\0';
-        printf("%s\n", ret);
+        pjoin(file, connector);
     } else {
         // reading from stdin
         if (!isatty(fileno(stdin))) {
-            //
-            char *buff = (char*)malloc(2048);
-            size_t n;
-            while (getline(&buff, &n, stdin) != -1) {
-                i = 0;
-                while (buff[i] != '\n') {
-                    ret[pos++] = buff[i++];
-                }
-                ret[pos++] = ' ';
-            }
-            //
-            ret[pos - 1] = '\0';
-            printf("%s\n", ret);
+            pjoin(stdin, connector);
         }
     }
     return 0;
