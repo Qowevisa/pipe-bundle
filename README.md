@@ -87,3 +87,5 @@ are the same.
 prints every argv as a line. Don't pass any stdin so the only use is to MaKe STREAM of lines
 ### cutlines
 prints the input but every occurance of first char argv[1] will be printed as '\n'
+### pset
+pritns set of characters for every line in stdin
