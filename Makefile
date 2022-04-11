@@ -1,4 +1,4 @@
-path_f = /usr/local/bin
+path_f = ~/.local/bin
 SRC = src
 BIN = bin
 programs_src = $(shell ls $(SRC) | grep .c)
@@ -15,7 +15,7 @@ all: $(programs)
 	@
 
 uninstall:
-	sudo rm $(foreach prog,$(programs),$(path_f)/$(prog))
+	rm $(foreach prog,$(programs),$(path_f)/$(prog))
 
 $(BIN):
 	mkdir $(BIN)
@@ -30,13 +30,13 @@ clean: $(BIN)
 	rm $(BIN)/*
 
 compile-and-send: $(path_f) compile-all
-	sudo cp $(BIN)/* $(path_f)
+	cp $(BIN)/* $(path_f)
 
 $(path_f):
-	@echo "Seems like you don't have $(path_f) folder! Enter sudo password to create it!"
-	sudo mkdir -p $(path_f)
+	@echo "Seems like you don't have $(path_f) folder!"
+	mkdir -p $(path_f)
 
 $(programs): $(path_f)
-	sudo gcc $(SRC)/$@.c -o $(path_f)/$@ $(CFLAGS)
+	gcc $(SRC)/$@.c -o $(path_f)/$@ $(CFLAGS)
 
 .PHONY: compile-all uninstall all clean
