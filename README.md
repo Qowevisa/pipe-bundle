@@ -89,3 +89,20 @@ prints every argv as a line. Don't pass any stdin so the only use is to MaKe STR
 prints the input but every occurance of first char argv[1] will be printed as '\n'
 ### pset
 pritns set of characters for every line in stdin
+### getdirs
+passes to stdout only directories. Every line should represent absolute or relative path
+You can create a bash function using concat in this bundle and it will be like that
+```
+find_dirs() {
+    ls $0 | concat $0 | getdirs
+}
+```
+now if you enter it in ~/.bash\_functions and type
+```
+source ~/.bash\_functions
+```
+and then
+```
+find_dirs ~/
+```
+you will see every directory in your home directory on the terminal screen. Nice!
