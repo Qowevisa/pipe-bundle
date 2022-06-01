@@ -91,7 +91,7 @@ prints the input but every occurance of first char argv[1] will be printed as '\
 pritns set of characters for every line in stdin
 ### getdirs
 passes to stdout only directories. Every line should represent absolute or relative path
-You can create a bash function using concat in this bundle and it will be like that
+You can create a bash function using also **concat** in this bundle and it will be like that
 ```
 find_dirs() {
     ls $0 | concat $0 | getdirs
@@ -99,7 +99,7 @@ find_dirs() {
 ```
 now if you enter it in ~/.bash\_functions and type
 ```
-source ~/.bash\_functions
+source ~/.bash_functions
 ```
 and then
 ```
