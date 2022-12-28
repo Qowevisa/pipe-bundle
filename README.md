@@ -106,3 +106,10 @@ and then
 find_dirs ~/
 ```
 you will see every directory in your home directory on the terminal screen. Nice!
+### normalize
+parses every stdin line for long int and sees it as number of bytes. Then it just normalize number of bytes into KiloBytes, MegaBytes and etc.
+Examples:
+```
+echo "10240" | normalize
+```
+will return **10.00Kb**
