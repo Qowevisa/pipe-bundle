@@ -16,6 +16,14 @@ and then sudo cp it by yourself whenever you want, or call 'compile-and-send' op
 make compile-and-send
 ```
 
+# Usage
+You can get the sizes of directories in your current directory by using some of these programs and xargs:
+```
+ls -a | getdirs | concat "" / | pex ./ ../ | xargs du --max-depth=0 | sort -n
+```
+This line will list all files (ls -a), filter only directories (getdirs), add '/' to the end of all of them (concat "" /), filter out current directory and parrent directory (pex ./ ../) (that's why we call 'concat "" /' earlier, not to filter out hidden folders by passing '.' and '..' as a arguments for pex), passing it all to du via xargs and then sort them out in ascending order)
+Note that du will send you size in Kb, not bytes.
+
 ## Sinopsis for each program
 ### add
 pushes every arg from i=1 to the end of the stream
