@@ -1,3 +1,4 @@
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -21,7 +22,10 @@ int main(int argc, char *argv[]) {
     }
     char final_command[1280];
     snprintf(final_command, sizeof(final_command), "%s%s", command, line);
-    system(final_command);
+    int e = system(final_command);
+    if (e == -1) {
+      fprintf(stderr, "Error: %s\n", strerror(errno));
+    }
   }
 
   return 0;
